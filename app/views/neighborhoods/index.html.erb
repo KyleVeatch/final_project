@@ -58,6 +58,11 @@
       <%= f.text_field :restaurants_name_cont, :class => "form-control", :placeholder => "Restaurant name contains" %>
     </div>
 
+<div class="form-group">
+      <%= f.label :city_name_cont, "City name contains" %>
+      <%= f.text_field :city_name_cont, :class => "form-control", :placeholder => "City name contains" %>
+    </div>
+
       <%= f.submit :class => "btn btn-primary btn-block mb-1" %>
 
       <a href="/neighborhoods" class="btn btn-default btn-block mb-1">Clear filters</a>
@@ -73,12 +78,20 @@
     <table class="table table-striped table-hover">
       <tr>
         <th>Name</th>
+        <th>City</th>
         <th>Actions</th>
       </tr>
 
       <% @neighborhoods.each do |neighborhood| %>
       <tr>
         <td><%= neighborhood.name %></td>
+        <td>
+          <% if neighborhood.city.present? %>
+            <a href="/cities/<%= neighborhood.city.id %>">
+              <%= neighborhood.city.name %>
+            </a>
+          <% end %>
+        </td>
         <td>
           <a href="/neighborhoods/<%= neighborhood.id %>" class="btn btn-primary">Show</a>
           <a href="/neighborhoods/<%= neighborhood.id %>/edit" class="btn btn-warning">Edit</a>

@@ -1,7 +1,7 @@
 class NeighborhoodsController < ApplicationController
   def index
     @q = Neighborhood.ransack(params[:q])
-    @neighborhoods = @q.result(:distinct => true).includes(:restaurants).page(params[:page]).per(10)
+    @neighborhoods = @q.result(:distinct => true).includes(:restaurants, :city).page(params[:page]).per(10)
 
     render("neighborhoods/index.html.erb")
   end
@@ -23,6 +23,7 @@ class NeighborhoodsController < ApplicationController
     @neighborhood = Neighborhood.new
 
     @neighborhood.name = params[:name]
+    @neighborhood.city_id = params[:city_id]
 
     save_status = @neighborhood.save
 
@@ -50,6 +51,7 @@ class NeighborhoodsController < ApplicationController
     @neighborhood = Neighborhood.find(params[:id])
 
     @neighborhood.name = params[:name]
+    @neighborhood.city_id = params[:city_id]
 
     save_status = @neighborhood.save
 

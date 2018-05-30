@@ -3,6 +3,8 @@ class Cuisine < ApplicationRecord
 
   has_many   :restaurants
 
+  belongs_to :city
+
   # Indirect associations
 
   # Validations

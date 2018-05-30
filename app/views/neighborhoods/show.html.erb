@@ -8,6 +8,15 @@
       <dt>Name</dt>
       <dd><%= @neighborhood.name %></dd>
 
+      <dt>City</dt>
+      <dd>
+        <% if @neighborhood.city.present? %>
+          <a href="/cities/<%= @neighborhood.city_id %>">
+            <%= @neighborhood.city.name %>
+          </a>
+        <% end %>
+      </dd>
+
     </dl>
 
     <div class="btn-group btn-group-justified">
